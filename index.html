@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="generadordememes,Ada,html,css,javascript" />
+    <meta name="description" content="Generador de Memes de Yamila Peralta" />
+    <meta name="author" content="Yamila Peralta" />
+    <!-- <meta http-equiv="refresh" content="" /> -->
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./Img/letra-y.png">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"
+      integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA=="
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+      integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+      crossorigin="anonymous"></script>
+    <title>Generador de Memes</title>
+  </head>
+  <body>
+    <header class="editing-menu">
+      <h1>Generador de memes</h1> <span class="author">by Yamila Peralta 🤍</span>
+      <section class="navbar">
+        <button class="title open-window-image" id="open-window-image">
+          <i class="fa-regular fa-image"></i>
+          <h4>Imagen</h4>
+        </button>      
+        <button class="title open-window-title" id="open-window-title" >
+          <i class="fa-solid fa-font"></i>
+          <h4>Texto</h4>
+        </button>
+        <button class="change-mode">
+          <i class="fa-regular fa-lightbulb title" id="lightbulb-off"><span>Modo oscuro</span></i>
+          <i class="fa-solid fa-lightbulb title hidden" id="lightbulb-on"><span>Modo claro</span></i>
+        </button>
+      </section>
+      <!-- IMAGEN--------------------------------------------------------------------------------------------------- -->
+       <aside class="sidebar">
+      <section class="menu-window window-image-container">
+        <div class="close">
+          <span id="btn-close-image"></span>
+        </div>
+        <h6 class="window-title">IMAGEN</h6>       
+        <div class="image-data">
+          <div class="image-url">
+            <label for="url">URL</label>
+            <input type="url" name="url" id="url" />
+          </div>
+          <div class="image-background">
+            <label for="fondo">FONDO</label>
+            <div class="background-filters">
+              <input class="color" type="color" name="color" id="color-back-meme"/>
+              <select name="blend-select" id="filters-select">
+                <option value="unset">Ninguno</option>
+                <option value="lighten">Aclarar</option>
+                <option value="darken">Oscurecer</option>
+                <option value="difference">Diferencia</option>
+                <option value="luminosity">Luminosidad</option>
+                <option value="multiply">Multiplicar</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="image-filters">
+          <h6>FILTROS</h6>
+          <div>
+            <div class="image-filters-items">
+              <label for="brightness">BRILLO</label>
+              <input class="slider" type="range" name="range" id="brightness" min="0" max="1" step="0.1" value="1"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="opacity">OPACIDAD</label>
+              <input  class="slider" type="range" name="range" id="opacity" min="0" max="1" step="0.1" value="1"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="contrast">CONTRASTE</label>
+              <input class="slider" type="range" name="rage" id="contrast"  min="100" max="1000" step="1" value="100"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="blur">DESENFOQUE</label>
+              <input class="slider" type="range" name="range" id="blur" min="0" max="10" step="1" value="0"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="grayscale">ESCALA DE GRISES</label>
+              <input  class="slider" type="range" name="range" id="grayscale" min="0" max="100" step="1" value="0"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="sepia">SEPIA</label>
+              <input class="slider" type="range" name="range" id="sepia" min="0" max="100" step="1" value="0"/> 
+            </div>
+            <div class="image-filters-items">
+              <label for="hue-rotate">HUE</label>
+              <input class="slider" type="range" name="range" id="hue-rotate" min="0" max="359" step="1" value="0"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="saturate">SATURADO</label>
+              <input class="slider" type="range" name="range" id="saturate" min="100" max="1000" step="10" value="100"/>
+            </div>
+            <div class="image-filters-items">
+              <label for="invert">NEGATIVO</label>
+              <input class="slider" type="range" name="range" id="invert" min="0" max="1" step="0.1" value="-1"/>
+            </div>
+          </div>
+        </div>
+        <button class="btn-reset-filters" type="reset" id="reset">
+          Reestablecer filtros
+        </button>
+      </section>
+      <!-- TEXTO----------------------------------------------------------------------- -->
+      <section class="menu-window window-title-container">
+        <div class="close">
+          <span id="btn-close-title">&times;</span>
+        </div>
+        <h6 class="window-title">TEXTO</h6>        
+        <div class="text-top-bottom">
+          <label for="text">SUPERIOR</label>
+          <input class="text-enter" type="text" id="texts" />
+          <div class="text-checkbtn">
+            <input type="checkbox" name="checkbox" id="check-top-text" />
+            <p>Sin texto superior</p>
+          </div>
+        </div>
+        <div class="text-top-bottom">
+          <label for="text">INFERIOR</label>
+          <input class="text-enter" type="text" id="textb" />
+          <div class="text-checkbtn">
+            <input type="checkbox" name="checkbox" id="check-bottom-text" />
+            <p>Sin texto inferior</p>
+          </div>
+        </div>
+        <div class="text-fonts">
+          <h6>FUENTE</h6>
+          <select name="font-select" id="font--select">
+            <option value="unset">Seleccionar</option>
+            <option value="Arial">Arial</option>
+            <option value="American Typewriter">American Typewriter</option>
+            <option value="Andale Mono">Andale Mono</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Impact">Impact</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Times New Roman">Times New Roman</option>
+            </select>
+            <div class="text-fonts-sizes">
+              <input type="number" name="text font size" id="font--size" aria-label="text font size" min="12" value="40"/>
+              <div class="text-fonts-align">
+                <button>
+                  <i class="fa-solid fa-align-left" aria-hidden="true"></i>
+                </button>
+                <button><i class="fa-solid fa-align-center"></i></button>
+                <button><i class="fa-solid fa-align-right"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="text-stylize">
+            <div class="text-color">
+              <label for="color">COLOR</label>
+              <input class="color" type="color" name="color-text" id="color-text" />
+            </div>
+            <div class="text-color">
+              <label for="fondo">FONDO</label>
+              <input class="color" type="color" name="color-back-text" id="color-back-text" />
+            </div>
+          </div>
+          <div class="text-checkbtn">
+            <input type="checkbox" name="checkbox fondo" id="check-transparent" />
+            <p>Fondo Transparente</p>
+          </div>
+          <div class="outline">
+            <h6>CONTORNO</h6>
+            <div class="outline-items">
+              <button class="unset-tone" id="unset-tone">Ninguno</button>
+              <button class="light-tone" id="light-tone">Claro</button>
+              <button class="dark-tone" id="dark-tone">Oscuro</button>
+            </div>
+          </div>
+          <div class="text-space">
+            <h6>ESPACIADO</h6>
+            <input class="text-space-items" type="number" name="number" id="text--space" min="5" max="50" value="25"/>
+          </div>
+          <div class="text-space">
+            <h6>INTERLINEADO</h6>
+            <select class="text-space-items" name="text-space-items" id="text-space-items">
+              <option value="0.8">0.8</option>
+              <option value="1">1</option>
+              <option value="1.2">1.2</option>
+              <option value="1.5">1.5</option>
+              <option value="2">2</option>
+              <option value="2.5">2.5</option>
+            </select>
+          </div>
+        </section>
+      </aside>
+    </header>
+   
+    <!-- MEME--------------------------------------------- -->
+    <main class="meme-container">
+      <div class="meme-container-box">
+        <h3 class="top-text">TOP TEXT</h3>
+        <div class="meme-box"></div>
+        <h3 class="bottom-text">BOTTOM TEXT</h3>
+      </div>
+      <button class="meme-download">
+        <i class="fa-solid fa-download"></i> DESCARGAR MEME
+      </button>
+    </main>
+    <script src="./generador.js></script>
+
+    <script src="https://kit.fontawesome.com/29587cd069.js" crossorigin="anonymous"></script>
+  </body>
+</html>
